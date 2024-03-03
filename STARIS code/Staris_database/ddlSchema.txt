@@ -1,0 +1,21 @@
+-- Create People table
+CREATE TABLE People (
+    email TEXT PRIMARY KEY,
+    name TEXT,
+    department TEXT,
+    job_title TEXT,
+    engineering_pillars TEXT,
+    research_keywords TEXT
+);
+
+-- Create Equipment table
+CREATE TABLE Equipment (
+    equipment_name TEXT,
+    contact_email TEXT,
+    terms_of_use TEXT,
+    cost_to_use TEXT, -- Assuming this is a string field to accommodate both "free" and "enquire for price"
+    quantity INTEGER,
+    location TEXT,
+    PRIMARY KEY (equipment_name, contact_email),
+    FOREIGN KEY (contact_email) REFERENCES People(email)
+);
