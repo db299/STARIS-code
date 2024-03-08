@@ -89,7 +89,7 @@ public class InitialiseDB{
     }
     /**
      * Executes the Sql code from the schema and performs some 
-     * basic checks.
+     * basic checks.s
      * @param dbPath
      * @param schemaPath
      * @throws SQLException
