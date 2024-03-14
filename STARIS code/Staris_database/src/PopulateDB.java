@@ -63,6 +63,35 @@ public class PopulateDB {
     }
 
     private static void populateEquipment(String pathToDatabase, String pathToExcelFile) throws SQLException, IOException {
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:"+pathToDatabase);
+        FileInputStream excelFile = new FileInputStream(pathToExcelFile);
+
+        Workbook workbook = WorkbookFactory.create(excelFile);
+        
+        for (int i = 1; i < workbook.getNumberOfSheets(); i++){
+            Sheet sheet = workbook.getSheetAt(i);
+
+            PreparedStatement pstmt = conn.prepareStatement("INSERT OR IGNORE INTO Equipment (type, description, details, location, contact, manager, access, terms, keywords, cost, owner) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            
+            for(Row row : sheet){
+                if(row.getRowNum() == 0){
+                    continue;
+                }
+            pstmt.setString(1, getStringValue(row.getCell(1)));
+            pstmt.setString(2, getStringValue(row.getCell(2)));
+            pstmt.setString(3, getStringValue(row.getCell(3)));
+            pstmt.setString(4, getStringValue(row.getCell(4)));
+            pstmt.setString(5, getStringValue(row.getCell(5)));
+            pstmt.setString(6, getStringValue(row.getCell(6)));
+            pstmt.setString(7, getStringValue(row.getCell(7)));
+            pstmt.setString(8, getStringValue(row.getCell(8)));
+            pstmt.setString(10, getStringValue(row.getCell(10)));
+            pstmt.setString(11, getStringValue(row.getCell(11)));
+            pstmt.setString(12, getStringValue(row.getCell(12)));
+
+            pstmt.executeUpdate();
+            }
+        }
     }
 
 
