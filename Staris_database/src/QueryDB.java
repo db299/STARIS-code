@@ -27,7 +27,7 @@ public class QueryDB {
         while (searchTermsResults.next()){
             String id = searchTermsResults.getString("id");
             idsSearchTerms.add(id);
-            //System.out.println(email);
+            
            
         }
         
@@ -35,7 +35,7 @@ public class QueryDB {
         while (typeResults.next()){
             String id = typeResults.getString("id");
             idsType.add(id);
-            //System.out.println(email);
+            
         }
 
         idsSearchTerms.addAll(idsType);
